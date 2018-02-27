@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>02d16553-623b-4cf3-ac43-86a4016c9f9b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>basic_openai_gym.py</StartupFile>
+    <StartupFile>cartpole_balancer_hillclimbing_train.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="basic_openai_gym.py" />
+    <Compile Include="cartpole_balancer_hillclimbing_train.py" />
+    <Compile Include="cartpole_balancer_randomsearch_train.py" />
     <Compile Include="shm_nn.py">
       <SubType>Code</SubType>
     </Compile>

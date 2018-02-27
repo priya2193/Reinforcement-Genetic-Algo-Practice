@@ -1,10 +1,12 @@
 import cv2
 import numpy as np
 import idx2numpy
+import os
 from sklearn.metrics import accuracy_score
 
 from shm_nn import *
 
+data_dir = 'C:\data\mnist'
 
 def get_mnist_data(x_path, y_path):
     x_in = idx2numpy.convert_from_file(x_path)
@@ -13,10 +15,10 @@ def get_mnist_data(x_path, y_path):
     return x_in / 255., y_in
 
 def get_mnist_testset():
-    return get_mnist_data('t10k-images.idx3-ubyte', 't10k-labels.idx1-ubyte')
+    return get_mnist_data(data_dir + os.sep + 't10k-images.idx3-ubyte', data_dir + os.sep + 't10k-labels.idx1-ubyte')
 
 def get_mnist_trainset():
-    return get_mnist_data('train-images.idx3-ubyte', 'train-labels.idx1-ubyte')
+    return get_mnist_data(data_dir + os.sep + 'train-images.idx3-ubyte', data_dir + os.sep + 'train-labels.idx1-ubyte')
 
 def show(img_cv2, res=(700, 700)):
     cv2.imshow('image', cv2.resize(img_cv2, res, cv2.INTER_CUBIC))
@@ -37,8 +39,9 @@ def load_and_test():
 
 def train_and_save():
     x_train, y_train = get_mnist_trainset()
+    x_test, y_test = get_mnist_testset()
     y_train_onehot = to_one_hot(y_train, 10)
-    nn = FullyConnectedNeuralNet([784, 64, 32, 10], learn_rate=.8, momentum=.009, init_type='gaussian')
+    nn = FullyConnectedNeuralNet([784, 64, 32, 10], learn_rate=.8, momentum=.009, init_type='gaussian', activation='sigmoid')
     batch_size = 128
     epochs = 20
     iters = 1
@@ -62,4 +65,5 @@ def train_and_save():
                     training_done = True
             iters += 1
 
-load_and_test()
+train_and_save()
+#load_and_test()

@@ -20,6 +20,7 @@ class FCLayer():
         self.momentum = momentum
         self.batch_size = 0
         self.activation_func = activation
+        self.x = np.zeros([1, input_params])
         if activation == 'relu':
             self.activation = self.relu
             self.activation_backprop = self.d_relu
@@ -126,6 +127,7 @@ class FullyConnectedNeuralNet():
                  init_var=.001, init_type='standard_normal'):
         if load_path == '':
             self.layers = []
+            self.neuron_counts = neuron_counts
             self.input_layer = FCLayer(neuron_counts[0], neuron_counts[1], is_input=True, activation='none')
             self.layers.append(self.input_layer)
             self.num_layers = len(neuron_counts)
