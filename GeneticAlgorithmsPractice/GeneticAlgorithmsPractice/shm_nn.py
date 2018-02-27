@@ -133,7 +133,7 @@ class FullyConnectedNeuralNet():
             self.num_layers = len(neuron_counts)
             for i in range(1, self.num_layers - 1):
                 layer = FCLayer(neuron_counts[i - 1], neuron_counts[i], is_input=False,
-                                learn_rate=learn_rate, momentum=momentum, activation='relu',
+                                learn_rate=learn_rate, momentum=momentum, activation=activation,
                                 init_mean=init_mean, init_var=init_var, init_type=init_type)
                 self.layers.append(layer)
             self.output_layer = FCLayer(neuron_counts[-2], neuron_counts[-1], is_input=False,
